@@ -1,1 +1,1 @@
-# rss-lshtm-data-viz-seminar
+# LSHTM Data Visualsation Seminar
