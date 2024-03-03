@@ -1,6 +1,6 @@
 ---
-title: "Effective data visualisation"
-subtitle: ""
+title: "Best Practices for Data Visualisation"
+subtitle: "Insights, advice, and examples (with code) to make data outputs more readable, accessible, and impactful"
 author: ""
 footer: ""
 format:
@@ -17,7 +17,66 @@ execute:
 fig-cap-location: top
 ---
 
-## Introduction
+## Introduction 
+
+[In this session we will cover...]{.fragment}
+
+::: incremental
+* why you should visualise data;
+
+* some guidelines for making better charts;
+
+* examples of good and bad charts!
+:::
+
+
+## But first, some background!
+
+[How did the guide come about?]{.fragment}
+
+[A survey in 2021 asked RSS members their views on *Significance* magazine.]{.fragment}
+
+[Respondents were asked, "What aspects of content could be improved?"]{.fragment}
+
+::: incremental
+-   "Better, more consistent charts... I'd like to see a house style like *The Economist*"
+-   "The plots sometimes look amateurish..."
+-   "The figures are often difficult to read..."
+:::
+
+## Help wanted
+
+[We put out a call:]{.fragment}
+
+["RSS publications seek data visualisation expert to develop best practice guidance"]{.fragment}
+
+[We wanted a guide that would:]{.fragment}
+
+::: incremental
+-   Help contributors develop data visualisations that are high quality, readable, effective at conveying information, and fulfil their intended purpose.
+-   Summarise and link to authoritative advice on chart styles and formats for different types of data.
+-   Show how to override software defaults in common data visualisation software and packages.
+:::
+
+## Skip forward quite a few months...
+
+![](images/guide-screenshot.png){fig-align="center" fig-alt="Screenshot of data vis guide homepage" width="70%"}
+
+## How the guide is structured
+
+![](images/guide-toc.png){fig-align="center" fig-alt="Screenshot of data vis guide table of contents" width="70%"}
+
+## Who's reading the guide?
+
+Since July 2023, the guide has recorded...
+
+::: incremental
+-   50,000 views
+-   14,000 users
+-   visitors from 152 countries
+:::
+
+## Meet Nicola
 
 ::: columns
 ::: {.column .right width="70%"}
@@ -44,17 +103,6 @@ Co-author of Royal Statistical Society's *Best Practices for Data Visualisation*
 
 :::
 :::
-
-
-## Outline
-
-This session will include:
-
-* why you should visualise data;
-
-* some guidelines for making better charts;
-
-* examples of good and bad charts!
 
 ```{r}
 #| label: setup
@@ -735,50 +783,108 @@ countdown::countdown(
 :::
 
 
-# Resources {background-color="#D9DBDB"}
+# Contributing to the guide {background-color="#D9DBDB"}
 
-## RSS Data Visualisation Guide
-
-[royal-statistical-society.github.io/datavisguide](https://royal-statistical-society.github.io/datavisguide/)
-
-![](images/guide-screenshot.png){fig-align="center" fig-alt="Screenshot of data vis guide homepage" width="50%"}
-
-## Choosing a chart type
+## Quarto
 
 ::: columns
-::: {.column width="35%"}
-What is the purpose of the chart?
+::: {.column width="80%"}
+[Quarto is an open-source scientific and technical publishing system]{.fragment} [that allows you to combine text, images, code, plots, and tables in a fully-reproducible document.]{.fragment}
 
-Try: [ft-interactive.github.io/visual-vocabulary](https://ft-interactive.github.io/visual-vocabulary/)
-
+[Quarto has support for multiple languages including R, Python, Julia, and Observable.]{.fragment} [It works for a range of output formats such as PDFs, HTML documents, websites, presentations,...]{.fragment}
 :::
 
-::: {.column width="65%"}
-![](images/visual-vocabulary.png){fig-align="center" fig-alt="Screenshot of visual vocabulary website" width="100%"}
+::: {.column width="20%"}
+![](images/quarto.png){fig-align="center" fig-alt="quarto hex sticker logo" width="80%"}
+:::
 :::
 
-:::
+## GitHub
 
-## Data visualisation resources
+The source code for the guide is stored on GitHub.
 
-Fundamentals of data visualization - [clauswilke.com/dataviz](https://clauswilke.com/dataviz/)
+If you want to contribute to the guide, the easiest way is via GitHub.
 
-<br>
+-   GitHub link: [github.com/royal-statistical-society/datavisguide](https://github.com/royal-statistical-society/datavisguide)
 
-ONS Guidance - [service-manual.ons.gov.uk/data-visualisation](https://service-manual.ons.gov.uk/data-visualisation)
+-   Contributor guide: [royal-statistical-society.github.io/datavisguide/howto.html#how-to-contribute-to-this-guide](https://royal-statistical-society.github.io/datavisguide/howto.html#how-to-contribute-to-this-guide)
 
-<br>
+## To ask a question or make a suggestion
 
-DataWrapper Blog - [blog.datawrapper.de](https://blog.datawrapper.de/)
+Create or add to a GitHub discussion
 
-## R resources
+![](images/github_discuss.png){fig-align="center" fig-alt="Screenshot of github repository with discussions shown" width="60%"}
 
-R Graphics Cookbook - [r-graphics.org](https://r-graphics.org/)
+## To report a bug or add a feature
 
-<br>
+Create an issue and describe:
 
-ggplot2: Elegant Graphics for Data Analysis - [ggplot2-book.org](https://ggplot2-book.org/)
+* what the bug or error is, and add the issue tag *bug*
 
-<br>
+* what feature you want to include, and add the issue tag *enhancement*
 
-#TidyTuesday - [github.com/rfordatascience/tidytuesday](https://github.com/rfordatascience/tidytuesday)
+![](images/github0.png){fig-align="center" fig-alt="Screenshot of github repository with issue button highlighted" width="80%"}
+
+## Make a fork
+
+![](images/github1.png){fig-align="center" fig-alt="Screenshot of github repository with fork button highlighted" width="60%"}
+
+## Clone the repository
+
+![](images/github2.png){fig-align="center" fig-alt="Screenshot of github repository with clone button highlighted" width="60%"}
+
+Then make your changes and commit them...
+
+## Create a pull request
+
+Open a pull request, describe what changes it contains, reference any *issues* it describes, and wait for review.
+
+![](images/github3.png){fig-align="center" fig-alt="Screenshot of github repository with pull request shown" width="60%"}
+
+## Need help with GitHub?
+
+Check out The Turing Way's "Getting Started with GitHub" section: [the-turing-way.netlify.app/collaboration/github-novice](https://the-turing-way.netlify.app/collaboration/github-novice)
+
+![](images/turing-way.png){fig-align="center" fig-alt="Screenshot of Turing Way page, Getting Started with GitHub" width="60%"}
+
+<!-- # Resources {background-color="#D9DBDB"} -->
+
+<!-- ## Choosing a chart type -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="35%"} -->
+<!-- What is the purpose of the chart? -->
+
+<!-- Try: [ft-interactive.github.io/visual-vocabulary](https://ft-interactive.github.io/visual-vocabulary/) -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="65%"} -->
+<!-- ![](images/visual-vocabulary.png){fig-align="center" fig-alt="Screenshot of visual vocabulary website" width="100%"} -->
+<!-- ::: -->
+
+<!-- ::: -->
+
+<!-- ## Data visualisation resources -->
+
+<!-- Fundamentals of data visualization - [clauswilke.com/dataviz](https://clauswilke.com/dataviz/) -->
+
+<!-- <br> -->
+
+<!-- ONS Guidance - [service-manual.ons.gov.uk/data-visualisation](https://service-manual.ons.gov.uk/data-visualisation) -->
+
+<!-- <br> -->
+
+<!-- DataWrapper Blog - [blog.datawrapper.de](https://blog.datawrapper.de/) -->
+
+<!-- ## R resources -->
+
+<!-- R Graphics Cookbook - [r-graphics.org](https://r-graphics.org/) -->
+
+<!-- <br> -->
+
+<!-- ggplot2: Elegant Graphics for Data Analysis - [ggplot2-book.org](https://ggplot2-book.org/) -->
+
+<!-- <br> -->
+
+<!-- #TidyTuesday - [github.com/rfordatascience/tidytuesday](https://github.com/rfordatascience/tidytuesday) -->
