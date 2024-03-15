@@ -2,7 +2,7 @@
 
 ### Details
 
-* Location: London School of Hygiene and Tropical Medicine
+* Location: London School of Hygiene and Tropical Medicine (and Zoom)
 * Date: 11 April 2024 (16:00)
 * Speakers: Brian Tarran and Nicola Rennie
 
