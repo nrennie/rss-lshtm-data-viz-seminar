@@ -848,7 +848,7 @@ Open a pull request, describe what changes it contains, reference any *issues* i
 
 Check out The Turing Way's "Getting Started with GitHub" section: [the-turing-way.netlify.app/collaboration/github-novice](https://the-turing-way.netlify.app/collaboration/github-novice)
 
-![](images/turing-way.png){fig-align="center" fig-alt="Screenshot of Turing Way page, Getting Started with GitHub" width="60%"}
+![](images/turing-way-img.png){fig-align="center" fig-alt="Screenshot of Turing Way page, Getting Started with GitHub" width="60%"}
 
 <!-- # Resources {background-color="#D9DBDB"} -->
 
