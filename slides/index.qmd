@@ -1,7 +1,7 @@
 ---
 title: "Best Practices for Data Visualisation"
 subtitle: "Insights, advice, and examples (with code) to make data outputs more readable, accessible, and impactful"
-author: ""
+author: "London School of Hygiene and Tropical Medicine<br>11 April 2024"
 footer: ""
 format:
   revealjs:
@@ -10,6 +10,8 @@ format:
     theme: RSSstyle.scss
     width: 1600
     height: 900
+    logo: "images/logo.png"
+    auto-stretch: false
 execute: 
   eval: true
   echo: false
@@ -64,7 +66,7 @@ fig-cap-location: top
 
 ## How the guide is structured
 
-![](images/guide-toc.png){fig-align="center" fig-alt="Screenshot of data vis guide table of contents" width="70%"}
+![](images/guide-toc.png){fig-align="center" fig-alt="Screenshot of data vis guide table of contents" width="65%"}
 
 ## Who's reading the guide?
 
@@ -128,7 +130,7 @@ Data visualisation has two main purposes:
 :::
 
 ::: {.column width="50%"}
-![](images/data_viz_books.png){fig-align="center" fig-alt="Examples of sequential, diverging, and qualitative palettes" width="90%"}
+![](images/data_viz_books.png){fig-align="center" fig-alt="book shelf cartoon" width="90%"}
 :::
 :::
 
@@ -180,12 +182,6 @@ ggplot(
 ```
 
 :::
-:::
-
-::: {.fragment}
-
-<small>See also "A hypothesis is a liability": [genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02133-w](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02133-w)</small>
-
 :::
 
 ## Communicating insights with data visualisation
@@ -266,7 +262,7 @@ pie(x = c(6.5, 5.5), labels = LETTERS[1:2], col = brewer.pal(2, "Dark2"), cex = 
 
 On the plot on the left, how tall is the bar?
 
-![](images/3d.png){fig-align="center" fig-alt="Two 3D bar charts" width="50%"}
+![](images/3d.png){fig-align="center" fig-alt="Two 3D bar charts" width="70%"}
 
 ## What are you trying to communicate?
 
@@ -311,6 +307,7 @@ A frequent aim: comparison.
 ```{r}
 #| label: hist1
 #| fig-align: center
+#| fig-height: 7
 set.seed(1234)
 n <- 20
 facet_df <- tibble(
@@ -334,6 +331,7 @@ ggplot(facet_df, aes(x = x, fill = grp)) +
 ```{r}
 #| label: hist2
 #| fig-align: center
+#| fig-height: 7
 ggplot(facet_df, aes(x = x, fill = grp)) +
   geom_density(alpha = 0.5) +
   facet_wrap(~grp, nrow = 1) +
@@ -345,8 +343,8 @@ ggplot(facet_df, aes(x = x, fill = grp)) +
 
 ```{r}
 #| label: hist3
-#| fig-width: 7
 #| fig-align: center
+#| fig-height: 7
 ggplot(facet_df, aes(x = x, fill = grp)) +
   geom_density(alpha = 0.5) +
   facet_wrap(~grp, ncol = 1, strip.position = "left") +
@@ -367,6 +365,7 @@ Longer labels are best on the y-axis, horizontally.
 #| eval: true
 #| warning: false
 #| layout-ncol: 2
+#| fig-height: 7
 plot_data <- gapminder::gapminder |>
   filter(continent == "Asia")
 ggplot(plot_data, aes(x = country, y = lifeExp)) +
@@ -390,6 +389,7 @@ Should the axes start at 0?
 ```{r}
 #| label: axes-zero
 #| layout-ncol: 2
+#| fig-height: 7
 plot_data <- data.frame(
   type = factor(
     c("Drug A", "Placebo"),
@@ -452,7 +452,7 @@ Order categories appropriately...
 ```{r}
 #| label: cat-order
 #| layout-ncol: 2
-#| fig-height: 6
+#| fig-height: 7
 gap_data <- gapminder::gapminder |>
   filter(
     country %in% c("Germany", "France", "Brazil", "Norway", "Uganda"),
@@ -476,7 +476,7 @@ gap_data |>
 
 ## Layouts, aspect ratios, and axes
 
-![](images/georgia.jpg){fig-align="center" fig-alt="Badly ordered chart of covid cases" width=70%}
+![](images/georgia.jpg){fig-align="center" fig-alt="Badly ordered chart of covid cases" width=65%}
 
 <small>Source: Georgia Department of Public Health</small>
 
@@ -497,7 +497,7 @@ Order based on magnitude unless the category order has meaning...
 ::: {.column width="50%"}
 ```{r}
 #| label: lines
-#| fig-height: 7
+#| fig-height: 8
 ggplot(
   data.frame(x = c("Cheshire", "Cumbira", "Greater\nManchester", "Lancashire", "Merseyside"), y = c(1, 0.5, 2.6, 1.5, 1.35)),
   aes(x = x, y = y)
@@ -517,6 +517,7 @@ ggplot(
 ```{r}
 #| label: legend1
 #| layout-ncol: 2
+#| fig-height: 7
 theme_set(theme_minimal(base_size = 22))
 x <- EuStockMarkets
 plot_data <- data.frame(
@@ -552,7 +553,7 @@ g +
 
 or use coloured fonts in the subtitle...
 
-![](https://raw.githubusercontent.com/nrennie/tidytuesday/main/2023/2023-12-26/20231226.png){fig-align="center" fig-alt="Line chart of stick performance" width="98%"}
+![](https://raw.githubusercontent.com/nrennie/tidytuesday/main/2023/2023-12-26/20231226.png){fig-align="center" fig-alt="Line chart of stick performance" width="65%"}
 
 ## Discussion 1
 
@@ -630,6 +631,7 @@ Is this a good choice of colour?
 ```{r}
 #| label: diamonds-bar
 #| fig-width: 12
+#| fig-height: 7
 #| fig-align: center
 g <- gap_data |>
   ggplot() +
@@ -645,7 +647,8 @@ Check for colourblind friendly plots with `colorblindr::cvd_grid(g)`.
 
 ```{r}
 #| label: cvd-grid
-#| fig-width: 9
+#| fig-width: 12
+#| fig-height: 7
 #| fig-align: center
 theme_set(theme_grey(base_size = 10))
 colorblindr::cvd_grid(g)
