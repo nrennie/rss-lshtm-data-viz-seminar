@@ -134,56 +134,6 @@ Data visualisation has two main purposes:
 :::
 :::
 
-## Exploratory data visualisation
-
-Because summary statistics aren't enough...
-
-::: columns
-::: {.column width="50%"}
-
-```{r}
-dino_data <- datasaurus_dozen |>
-  filter(dataset %in% c("dino", "slant_up")) |>
-  mutate(dataset = case_when(
-    dataset == "dino" ~ "A",
-    dataset == "slant_up" ~ "B"
-  ))
-
-dino_data |>
-  group_by(dataset) |>
-  summarise(
-    mean_x = mean(x),
-    mean_y = mean(y),
-    sd_x = sd(x),
-    sd_y = sd(y),
-    cor_xy = cor(x, y)
-  ) |>
-  pivot_longer(-1, names_to = "Dataset") %>%
-  pivot_wider(names_from = 1, values_from = value) |>
-  kbl() |>
-  kable_styling("striped")
-```
-
-:::
-
-::: {.column width="50%" .fragment .center}
-
-```{r}
-#| fig-width: 8
-#| fig-height: 4
-ggplot(
-  data = dino_data,
-  mapping = aes(x = x, y = y)
-) +
-  geom_point(size = 2) +
-  facet_wrap(~dataset, ncol = 2) +
-  theme_bw() +
-  theme(legend.position = "none")
-```
-
-:::
-:::
-
 ## Communicating insights with data visualisation
 
 **Grab attention**
@@ -226,7 +176,7 @@ Snow. 1854.
 
 :::
 
-## Why do people hate pie charts?
+## Why do pie charts have a bad reputation?
 
 Good data visualisation isn't just based on opinions...
 
@@ -258,7 +208,7 @@ pie(x = c(6.5, 5.5), labels = LETTERS[1:2], col = brewer.pal(2, "Dark2"), cex = 
 
 :::
 
-## Why do people hate 3D charts?
+## Why do 3D charts have a bad reputation?
 
 On the plot on the left, how tall is the bar?
 
@@ -359,12 +309,14 @@ ggplot(facet_df, aes(x = x, fill = grp)) +
 
 Longer labels are best on the y-axis, horizontally.
 
+::: columns
+::: {.column width="50%"}
+
 ```{r}
 #| label: axes
 #| echo: false
 #| eval: true
 #| warning: false
-#| layout-ncol: 2
 #| fig-height: 7
 plot_data <- gapminder::gapminder |>
   filter(continent == "Asia")
@@ -372,13 +324,28 @@ ggplot(plot_data, aes(x = country, y = lifeExp)) +
   geom_boxplot() +
   xlab("Life expectancy") +
   ylab("") +
-  theme_bw()
+  theme_bw(base_size = 18)
+```
+
+:::
+
+::: {.column .fragment width="50%"}
+
+```{r}
+#| label: axes-2
+#| echo: false
+#| eval: true
+#| warning: false
+#| fig-height: 7
 ggplot(plot_data, aes(y = country, x = lifeExp)) +
   geom_boxplot() +
   xlab("Life expectancy") +
   ylab("") +
-  theme_bw()
+  theme_bw(base_size = 18)
 ```
+
+:::
+:::
 
 ## Layouts, aspect ratios, and axes
 
@@ -449,9 +416,11 @@ tsibbledata::global_economy |>
 
 Order categories appropriately...
 
+::: columns
+::: {.column width="50%"}
+
 ```{r}
 #| label: cat-order
-#| layout-ncol: 2
 #| fig-height: 7
 gap_data <- gapminder::gapminder |>
   filter(
@@ -464,7 +433,15 @@ gap_data |>
   geom_col(aes(x = country, y = lifeExp), fill = "slateblue") +
   labs(x = "", y = "Life expectancy (1997)") +
   coord_flip() 
+```
 
+:::
+
+::: {.column .fragment width="50%"}
+
+```{r}
+#| label: cat-order-2
+#| fig-height: 7
 gap_data |>
   ggplot() +
   geom_col(aes(x = reorder(country, lifeExp), y = lifeExp),
@@ -473,6 +450,10 @@ gap_data |>
   labs(x = "", y = "Life expectancy (1997)") +
   coord_flip()
 ```
+
+:::
+
+:::
 
 ## Layouts, aspect ratios, and axes
 
@@ -554,45 +535,6 @@ g +
 or use coloured fonts in the subtitle...
 
 ![](https://raw.githubusercontent.com/nrennie/tidytuesday/main/2023/2023-12-26/20231226.png){fig-align="center" fig-alt="Line chart of stick performance" width="65%"}
-
-## Discussion 1
-
-In groups, discuss the following chart. What is good and bad about it?
-
-::: columns
-
-::: {.column}
-![](images/economist1.png){fig-align="center" fig-alt="Bar chart from the economist" width=85%}
-:::
-
-::: {.column .fragment}
-![](images/economist2.png){fig-align="center" fig-alt="Improved bar chart from the economist" width=85%}
-:::
-
-:::
-
-::: {.fragment}
-
-<small>Source: <a href="https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368">medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368</a></small>
-
-:::
-
-```{r}
-#| label: ex-1-timer
-countdown::countdown(
-  minutes = 3,
-  color_border = "#b20e10",
-  color_text = "#b20e10",
-  color_running_text = "white",
-  color_running_background = "#b20e10",
-  color_finished_text = "#b20e10",
-  color_finished_background = "white",
-  top = 0,
-  margin = "0.5em",
-  font_size = "2em"
-)
-```
-
 
 # Styling charts {background-color="#D9DBDB"}
 
@@ -701,8 +643,6 @@ There is no *perfect* font.
 
 :::
 
-# Data visualisation in practice {background-color="#D9DBDB"}
-
 ## Key points
 
 * Charts should have a purpose
@@ -735,7 +675,7 @@ There is no *perfect* font.
 :::
 :::
 
-## Discussion 2
+## Discussion
 
 In groups, discuss how you might visualise the following data?
 
@@ -773,7 +713,7 @@ countdown::countdown(
 )
 ```
 
-## Discussion 2
+## Discussion
 
 ::: columns
 ::: {.column}
@@ -850,44 +790,4 @@ Check out The Turing Way's "Getting Started with GitHub" section: [the-turing-wa
 
 ![](images/turing-way-img.png){fig-align="center" fig-alt="Screenshot of Turing Way page, Getting Started with GitHub" width="60%"}
 
-<!-- # Resources {background-color="#D9DBDB"} -->
-
-<!-- ## Choosing a chart type -->
-
-<!-- ::: columns -->
-<!-- ::: {.column width="35%"} -->
-<!-- What is the purpose of the chart? -->
-
-<!-- Try: [ft-interactive.github.io/visual-vocabulary](https://ft-interactive.github.io/visual-vocabulary/) -->
-
-<!-- ::: -->
-
-<!-- ::: {.column width="65%"} -->
-<!-- ![](images/visual-vocabulary.png){fig-align="center" fig-alt="Screenshot of visual vocabulary website" width="100%"} -->
-<!-- ::: -->
-
-<!-- ::: -->
-
-<!-- ## Data visualisation resources -->
-
-<!-- Fundamentals of data visualization - [clauswilke.com/dataviz](https://clauswilke.com/dataviz/) -->
-
-<!-- <br> -->
-
-<!-- ONS Guidance - [service-manual.ons.gov.uk/data-visualisation](https://service-manual.ons.gov.uk/data-visualisation) -->
-
-<!-- <br> -->
-
-<!-- DataWrapper Blog - [blog.datawrapper.de](https://blog.datawrapper.de/) -->
-
-<!-- ## R resources -->
-
-<!-- R Graphics Cookbook - [r-graphics.org](https://r-graphics.org/) -->
-
-<!-- <br> -->
-
-<!-- ggplot2: Elegant Graphics for Data Analysis - [ggplot2-book.org](https://ggplot2-book.org/) -->
-
-<!-- <br> -->
-
-<!-- #TidyTuesday - [github.com/rfordatascience/tidytuesday](https://github.com/rfordatascience/tidytuesday) -->
+# Read the guide: [rss.org.uk/datavisguide](https://rss.org.uk/datavisguide/) {background-color="#005573"}
